@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gợi ý món ăn - NutriGuide</title>
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/suggestions.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header" id="mainHeader">
+            <h1>🍽️ NutriGuide</h1>
+            <div class="user-info">
+                <span id="userDisplay"></span>
+                <button class="btn btn-secondary" onclick="logout()">Đăng xuất</button>
+            </div>
+        </div>
+
+        <nav id="mainNav">
+            <ul>
+                <li><a href="dashboard.html">Trang chủ</a></li>
+                <li><a href="preferences.html">Sở thích của tôi</a></li>
+                <li><a href="suggestions.html">Gợi ý món ăn</a></li>
+
+            </ul>
+        </nav>
+
+        <div class="content" id="mainContent">
+            <h2>🤖 Gợi ý món ăn từ AI</h2>
+            <p>Nhận gợi ý cá nhân hóa dựa trên sở thích và mục tiêu của bạn</p>
+
+            <div class="suggestions-actions">
+                <button class="btn btn-success" onclick="getSuggestions()">
+                    🔄 Tạo gợi ý mới
+                </button>
+            </div>
+
+            <div id="message"></div>
+
+            <!-- Loading indicator -->
+            <div id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>AI đang phân tích và tạo gợi ý cho bạn...</p>
+                <small>Quá trình này có thể mất 10-30 giây</small>
+            </div>
+
+            <!-- Container hiển thị gợi ý -->
+            <div id="suggestionsContainer" class="suggestions-grid"></div>
+        </div>
+    </div>
+
+    <script src="js/suggestions.js">
+
+    </script>
+</body>
+
+</html>

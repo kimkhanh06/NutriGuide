@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - NutriGuide</title>
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+
+<body>
+    <div class="container form-container">
+        <h1 class="text-center">NutriGuide 🍽️</h1>
+        <p class="text-center mb-20">Hệ thống gợi ý món ăn thông minh</p>
+
+        <div id="message"></div>
+
+        <!-- Form đăng nhập -->
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Tên đăng nhập:</label>
+                <input type="text" id="username" name="username" required placeholder="Nhập tên đăng nhập">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Mật khẩu:</label>
+                <input type="password" id="password" name="password" required placeholder="Nhập mật khẩu">
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Đăng nhập</button>
+        </form>
+
+        <p class="text-center mt-20">
+            Chưa có tài khoản? <a href="register.html" style="color: #667eea;">Đăng ký ngay</a>
+        </p>
+    </div>
+
+    <script src="js/login.js">
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký - NutriGuide</title>
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+
+<body>
+    <div class="container form-container">
+        <h1 class="text-center">Đăng ký tài khoản</h1>
+        <p class="text-center mb-20">Tham gia NutriGuide ngay hôm nay!</p>
+
+        <div id="message"></div>
+
+        <!-- Form đăng ký -->
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="username">Tên đăng nhập:</label>
+                <input type="text" id="username" name="username" required
+                    placeholder="Chọn tên đăng nhập (tối thiểu 3 ký tự)" minlength="3">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Mật khẩu:</label>
+                <input type="password" id="password" name="password" required
+                    placeholder="Nhập mật khẩu (tối thiểu 6 ký tự)" minlength="6">
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Xác nhận mật khẩu:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required
+                    placeholder="Nhập lại mật khẩu">
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Đăng ký</button>
+        </form>
+
+        <p class="text-center mt-20">
+            Đã có tài khoản? <a href="login.html" style="color: #667eea;">Đăng nhập</a>
+        </p>
+    </div>
+
+    <script src="js/register.js"></script>
+</body>
+
+</html>

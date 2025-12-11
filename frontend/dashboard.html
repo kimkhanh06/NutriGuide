@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ - NutriGuide</title>
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header với thông tin user -->
+        <div class="header">
+            <h1>🍽️ NutriGuide Dashboard</h1>
+            <div class="user-info">
+                <span id="userDisplay"></span>
+                <button class="btn btn-secondary" onclick="logout()">Đăng xuất</button>
+            </div>
+        </div>
+
+        <!-- Navigation menu -->
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Trang chủ</a></li>
+                <li><a href="preferences.html">Sở thích của tôi</a></li>
+                <li><a href="suggestions.html">Gợi ý món ăn</a></li>
+
+            </ul>
+        </nav>
+
+        <!-- Nội dung chính -->
+        <div class="content">
+            <h2>Chào mừng đến với NutriGuide! 👋</h2>
+            <p>Hệ thống gợi ý món ăn thông minh được hỗ trợ bởi Gemini AI</p>
+
+            <div class="grid" style="margin-top: 30px;">
+                <!-- Card 1: Thiết lập sở thích -->
+                <div class="card">
+                    <h3>📝 Thiết lập sở thích</h3>
+                    <p>Cập nhật khẩu vị, món yêu thích/không thích, thực phẩm dị ứng và mục tiêu sức khỏe của bạn.</p>
+                    <button class="btn btn-primary mt-20" onclick="location.href='preferences.html'">
+                        Đi đến thiết lập
+                    </button>
+                </div>
+
+                <!-- Card 2: Gợi ý món ăn -->
+                <div class="card">
+                    <h3>🤖 Gợi ý món ăn AI</h3>
+                    <p>Nhận gợi ý món ăn được cá nhân hóa dựa trên sở thích và mục tiêu của bạn.</p>
+                    <button class="btn btn-success mt-20" onclick="location.href='suggestions.html'">
+                        Xem gợi ý
+                    </button>
+                </div>
+
+                <!-- Card 3: Lịch sử -->
+                <div class="card">
+                    <h3>📊 Lịch sử ăn uống</h3>
+                    <p>Xem lại các món đã ăn và theo dõi dinh dưỡng hàng ngày của bạn.</p>
+                    <button class="btn btn-primary mt-20">
+                        Xem lịch sử
+                    </button>
+                </div>
+            </div>
+
+            <!-- Hướng dẫn sử dụng -->
+            <div class="card mt-20">
+                <h3>🚀 Bắt đầu như thế nào?</h3>
+                <ol style="margin-left: 20px; line-height: 2;">
+                    <li>Truy cập <strong>"Sở thích của tôi"</strong> để thiết lập thông tin cá nhân</li>
+                    <li>Nhập món yêu thích, món không thích và thực phẩm dị ứng (nếu có)</li>
+                    <li>Chọn mục tiêu sức khỏe (giảm cân, tăng cơ, duy trì...)</li>
+                    <li>Đặt ngân sách cho mỗi bữa ăn</li>
+                    <li>Nhấn <strong>"Gợi ý món ăn"</strong> để nhận đề xuất từ AI</li>
+                    <li>Lưu lại món đã ăn để AI tối ưu gợi ý theo thời gian</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/dashboard.js">
+
+    </script>
+</body>
+
+</html>

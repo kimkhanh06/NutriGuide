@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sở thích - NutriGuide</title>
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/preferences.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header" id="mainHeader">
+            <h1>🍽️ NutriGuide</h1>
+            <div class="user-info">
+                <span id="userDisplay"></span>
+                <button class="btn btn-secondary" onclick="logout()">Đăng xuất</button>
+            </div>
+        </div>
+
+        <nav id="mainNav">
+            <ul>
+                <li><a href="dashboard.html">Trang chủ</a></li>
+                <li><a href="preferences.html">Sở thích của tôi</a></li>
+                <li><a href="suggestions.html">Gợi ý món ăn</a></li>
+
+            </ul>
+        </nav>
+
+        <div class="content">
+            <h2>⚙️ Thiết lập sở thích của bạn</h2>
+            <p>Giúp AI hiểu bạn hơn để đưa ra gợi ý chính xác nhất!</p>
+
+            <div id="message"></div>
+            <div id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                Đang tải thông tin...
+            </div>
+
+            <!-- Form sở thích -->
+            <form id="preferencesForm" style="max-width: 800px;">
+                <!-- US01: Nhập khẩu vị, món thích/không thích -->
+                <div class="form-group">
+                    <label for="favorite_foods">🍕 Món ăn yêu thích:</label>
+                    <textarea id="favorite_foods" rows="3"
+                        placeholder="Ví dụ: phở, bún chả, cơm gà, salad... (ngăn cách bằng dấu phẩy)"></textarea>
+                    <small style="color: #666;">Nhập các món bạn yêu thích, ngăn cách bằng dấu phẩy</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="dislike_foods">🚫 Món ăn không thích:</label>
+                    <textarea id="dislike_foods" rows="3"
+                        placeholder="Ví dụ: đậu hũ, bông cải, cà rốt... (ngăn cách bằng dấu phẩy)"></textarea>
+                    <small style="color: #666;">Nhập các món bạn không thích để AI tránh gợi ý</small>
+                </div>
+
+                <!-- US02: Khai báo thực phẩm dị ứng -->
+                <div class="form-group">
+                    <label for="allergies">⚠️ Thực phẩm dị ứng:</label>
+                    <textarea id="allergies" rows="3"
+                        placeholder="Ví dụ: tôm, cua, đậu phộng, sữa, trứng... (ngăn cách bằng dấu phẩy)"></textarea>
+                    <small style="color: #666;">QUAN TRỌNG: Nhập các thực phẩm gây dị ứng để đảm bảo an toàn</small>
+                </div>
+
+                <!-- US03: Mục tiêu sức khỏe -->
+                <div class="form-group">
+                    <label for="health_goal">🎯 Mục tiêu sức khỏe:</label>
+                    <select id="health_goal">
+                        <option value="maintain">Duy trì cân nặng</option>
+                        <option value="lose_weight">Giảm cân</option>
+                        <option value="gain_muscle">Tăng cơ</option>
+                        <option value="healthy_eating">Ăn uống lành mạnh</option>
+                    </select>
+                    <small style="color: #666;">Chọn mục tiêu để AI gợi ý món phù hợp</small>
+                </div>
+
+
+                <button type="submit" class="btn btn-primary">💾 Lưu sở thích</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/preferences.js">
+
+    </script>
+</body>
+
+</html>

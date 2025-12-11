@@ -1,0 +1,283 @@
+/* ========================================
+   PREFERENCES CSS - Trang sở thích
+   ======================================== */
+
+/* Form container */
+.preferences-form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Section headers */
+.preferences-form h3 {
+    color: var(--primary);
+    font-size: 1.3rem;
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--gray-100);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+/* Form groups */
+.form-group {
+    margin-bottom: var(--space-xl);
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--space-md);
+    color: var(--gray-800);
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* Label với icon emoji */
+.form-group label::before {
+    margin-right: var(--space-sm);
+}
+
+/* Input, textarea, select styling */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid var(--gray-100);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    background: var(--gray-50);
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Small helper text */
+.form-group small {
+    display: block;
+    margin-top: var(--space-sm);
+    color: var(--gray-700);
+    font-size: 0.875rem;
+    font-style: italic;
+}
+
+/* Select với custom arrow */
+.form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23667eea' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 12px;
+    padding-right: 2.5rem;
+}
+
+/* Number input với styling */
+.form-group input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.form-group input[type="number"]::-webkit-outer-spin-button,
+.form-group input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Health goal options - visual cards */
+.health-goals {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+}
+
+.goal-option {
+    padding: var(--space-lg);
+    border: 2px solid var(--gray-100);
+    border-radius: var(--radius);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: var(--white);
+}
+
+.goal-option:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.goal-option.selected {
+    border-color: var(--primary);
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+}
+
+.goal-option .icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-sm);
+}
+
+.goal-option .title {
+    font-weight: 600;
+    color: var(--gray-800);
+}
+
+/* Budget slider */
+.budget-slider {
+    margin: var(--space-lg) 0;
+}
+
+.budget-slider input[type="range"] {
+    width: 100%;
+    height: 8px;
+    border-radius: var(--radius-full);
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    outline: none;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.budget-slider input[type="range"]:hover {
+    opacity: 1;
+}
+
+.budget-slider input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 3px solid var(--primary);
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+}
+
+.budget-slider input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 3px solid var(--primary);
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+}
+
+.budget-value {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-top: var(--space-md);
+}
+
+/* Warning/info boxes */
+.info-box {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-left: 4px solid var(--warning);
+    padding: var(--space-lg);
+    border-radius: var(--radius);
+    margin: var(--space-lg) 0;
+}
+
+.info-box.warning {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    border-left-color: var(--danger);
+}
+
+.info-box.success {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    border-left-color: var(--success);
+}
+
+.info-box strong {
+    display: block;
+    margin-bottom: var(--space-sm);
+    font-size: 1.1rem;
+}
+
+/* Tags input (cho món yêu thích, dị ứng...) */
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    border: 2px solid var(--gray-100);
+    border-radius: var(--radius);
+    min-height: 60px;
+    background: var(--gray-50);
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 0.5rem var(--space-md);
+    background: var(--primary);
+    color: var(--white);
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    animation: tagPop 0.3s ease;
+}
+
+@keyframes tagPop {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.tag button {
+    background: none;
+    border: none;
+    color: var(--white);
+    cursor: pointer;
+    font-size: 1.2rem;
+    line-height: 1;
+    padding: 0;
+}
+
+/* Form actions */
+.form-actions {
+    display: flex;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+    padding-top: var(--space-xl);
+    border-top: 2px solid var(--gray-100);
+}
+
+.form-actions .btn {
+    flex: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .health-goals {
+        grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriGuide - Hệ thống gợi ý món ăn AI</title>
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="text-center">
+            <h1>🍽️ NutriGuide</h1>
+            <p style="font-size: 1.3em; color: #555; margin-bottom: 40px;">
+                Hệ thống gợi ý món ăn thông minh được hỗ trợ bởi Gemini AI
+            </p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>🤖 AI Cá nhân hóa</h3>
+                <p>Gemini AI phân tích sở thích và đề xuất món ăn phù hợp với bạn</p>
+            </div>
+
+            <div class="card">
+                <h3>📊 Theo dõi dinh dưỡng</h3>
+                <p>Kiểm soát calories, protein, carbs và fat của mỗi bữa ăn</p>
+            </div>
+
+            <div class="card">
+                <h3>💰 Quản lý ngân sách</h3>
+                <p>Gợi ý món ăn phù hợp với khả năng tài chính của bạn</p>
+            </div>
+
+            <div class="card">
+                <h3>⚠️ An toàn thực phẩm</h3>
+                <p>Tránh các món có nguyên liệu gây dị ứng cho bạn</p>
+            </div>
+
+            <div class="card">
+                <h3>🎯 Mục tiêu sức khỏe</h3>
+                <p>Hỗ trợ giảm cân, tăng cơ, ăn uống lành mạnh</p>
+            </div>
+
+            <div class="card">
+                <h3>📈 Lịch sử chi tiết</h3>
+                <p>Theo dõi thói quen ăn uống để tối ưu gợi ý</p>
+            </div>
+        </div>
+
+        <div class="text-center mt-20">
+            <button class="btn btn-success" onclick="window.location.href='register.html'">
+                🚀 Đăng ký ngay
+            </button>
+            <button class="btn btn-primary" onclick="window.location.href='login.html'">
+                🔑 Đăng nhập
+            </button>
+        </div>
+
+        <div class="card mt-20">
+            <h3>🌟 Tại sao chọn NutriGuide?</h3>
+            <ul style="line-height: 2; margin-left: 20px;">
+                <li><strong>Thông minh:</strong> Sử dụng Gemini AI để phân tích và đề xuất món ăn</li>
+                <li><strong>Cá nhân hóa:</strong> Hiểu sở thích, dị ứng và mục tiêu của từng người</li>
+                <li><strong>Tiện lợi:</strong> Giao diện đơn giản, dễ sử dụng</li>
+                <li><strong>Miễn phí:</strong> Sử dụng hoàn toàn miễn phí</li>
+                <li><strong>An toàn:</strong> Bảo vệ thông tin cá nhân và sức khỏe của bạn</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Kiểm tra đã đăng nhập chưa, nếu rồi thì chuyển đến dashboard
+        const token = localStorage.getItem('token');
+        if (token) {
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>
