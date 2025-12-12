@@ -10,7 +10,7 @@ const router = express.Router();
 // ==========================
 router.post('/', authenticateToken, async (req, res) => {
     try {
-        const { favorite_foods, dislike_foods, allergies, health_goal, budget_range } = req.body;
+        const { favorite_foods, dislike_foods, allergies, health_goal } = req.body;
         const userId = req.user.userId;
 
         // Kiểm tra đã có preferences chưa
@@ -21,17 +21,17 @@ router.post('/', authenticateToken, async (req, res) => {
             await pool.query(
                 `UPDATE user_preferences SET 
                 favorite_foods = ?, dislike_foods = ?, allergies = ?, 
-                health_goal = ?, budget_range = ?
+                health_goal = ?
                 WHERE user_id = ?`,
-                [favorite_foods, dislike_foods, allergies, health_goal, budget_range, userId]
+                [favorite_foods, dislike_foods, allergies, health_goal, userId]
             );
         } else {
             // Insert mới nếu chưa có
             await pool.query(
                 `INSERT INTO user_preferences 
-                (user_id, favorite_foods, dislike_foods, allergies, health_goal, budget_range)
-                VALUES (?, ?, ?, ?, ?, ?)`,
-                [userId, favorite_foods, dislike_foods, allergies, health_goal, budget_range]
+                (user_id, favorite_foods, dislike_foods, allergies, health_goal)
+                VALUES (?, ?, ?, ?, ?)`,
+                [userId, favorite_foods, dislike_foods, allergies, health_goal]
             );
         }
 

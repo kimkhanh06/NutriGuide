@@ -30,7 +30,6 @@ ${dishes.map(d => `
 - Tên: ${d.name}
 - Mô tả: ${d.description}
 - Dinh dưỡng: ${d.calories} kcal, ${d.protein}g protein, ${d.carbs}g carbs, ${d.fat}g fat
-- Giá: ${d.price} VNĐ
 - Nguyên liệu: ${d.ingredients}
 `).join('\n')}
 

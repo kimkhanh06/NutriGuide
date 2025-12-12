@@ -16,13 +16,13 @@ router.post('/register', async (req, res) => {
 
         // Validate input
         if (!username || !password) {
-            return res.status(400).json({ error: 'Username and password required' });
+            return res.status(400).json({ error: 'Vui lòng nhập tên đăng nhập và mật khẩu.' });
         }
 
         // Kiểm tra username đã tồn tại chưa
         const [existing] = await pool.query('SELECT id FROM users WHERE username = ?', [username]);
         if (existing.length > 0) {
-            return res.status(400).json({ error: 'Username already exists' });
+            return res.status(400).json({ error: 'Tên người dùng đã tồn tại.' });
         }
 
         // Hash mật khẩu (bcrypt tự động thêm salt)
@@ -52,13 +52,13 @@ router.post('/login', async (req, res) => {
 
         // Validate input
         if (!username || !password) {
-            return res.status(400).json({ error: 'Username and password required' });
+            return res.status(400).json({ error: 'Vui lòng nhập tên đăng nhập và mật khẩu.' });
         }
 
         // Tìm user trong database
         const [users] = await pool.query('SELECT * FROM users WHERE username = ?', [username]);
         if (users.length === 0) {
-            return res.status(401).json({ error: 'Invalid credentials' });
+            return res.status(401).json({ error: 'Thông tin đăng nhập không hợp lệ.' });
         }
 
         const user = users[0];
@@ -66,7 +66,7 @@ router.post('/login', async (req, res) => {
         // So sánh mật khẩu với hash
         const validPassword = await bcrypt.compare(password, user.password);
         if (!validPassword) {
-            return res.status(401).json({ error: 'Invalid credentials' });
+            return res.status(401).json({ error: 'Thông tin đăng nhập không hợp lệ.' });
         }
 
         // Tạo JWT token (hết hạn sau 24h)

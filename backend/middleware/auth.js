@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 // Secret key cho JWT từ .env
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-this';
+const JWT_SECRET = process.env.JWT_SECRET || 'my-secret-key-change-this';
 
 // Middleware xác thực token
 const authenticateToken = (req, res, next) => {
