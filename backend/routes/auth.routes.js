@@ -20,7 +20,7 @@ router.post('/register', async (req, res) => {
         }
 
         // Kiểm tra username đã tồn tại chưa
-        const [existing] = await pool.query('SELECT id FROM users WHERE username = ?', [username]);
+        const [existing] = await pool.query('SELECT user_id FROM users WHERE username = ?', [username]);
         if (existing.length > 0) {
             return res.status(400).json({ error: 'Tên người dùng đã tồn tại.' });
         }
@@ -71,7 +71,7 @@ router.post('/login', async (req, res) => {
 
         // Tạo JWT token (hết hạn sau 24h)
         const token = jwt.sign(
-            { userId: user.id, username: user.username, role: user.role },
+            { user_id: user.user_id, username: user.username, role: user.role },
             JWT_SECRET,
             { expiresIn: '24h' }
         );
@@ -79,7 +79,7 @@ router.post('/login', async (req, res) => {
         res.json({
             message: 'Login successful',
             token,
-            user: { id: user.id, username: user.username, role: user.role }
+            user: { user_id: user.user_id, username: user.username, role: user.role }
         });
     } catch (error) {
         console.error('Login error:', error);

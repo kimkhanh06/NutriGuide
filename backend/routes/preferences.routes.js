@@ -11,10 +11,10 @@ const router = express.Router();
 router.post('/', authenticateToken, async (req, res) => {
     try {
         const { favorite_foods, dislike_foods, allergies, health_goal } = req.body;
-        const userId = req.user.userId;
+        const userId = req.user.user_id;
 
         // Kiểm tra đã có preferences chưa
-        const [existing] = await pool.query('SELECT id FROM user_preferences WHERE user_id = ?', [userId]);
+        const [existing] = await pool.query('SELECT pref_id FROM user_preferences WHERE user_id = ?', [userId]);
 
         if (existing.length > 0) {
             // Update nếu đã có
@@ -47,7 +47,7 @@ router.post('/', authenticateToken, async (req, res) => {
 // ==========================
 router.get('/', authenticateToken, async (req, res) => {
     try {
-        const userId = req.user.userId;
+        const userId = req.user.user_id;
         const [prefs] = await pool.query('SELECT * FROM user_preferences WHERE user_id = ?', [userId]);
 
         if (prefs.length === 0) {

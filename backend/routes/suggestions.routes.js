@@ -11,7 +11,7 @@ const router = express.Router();
 // ==========================
 router.post('/', authenticateToken, async (req, res) => {
     try {
-        const userId = req.user.userId;
+        const userId = req.user.user_id;
 
         // Lấy thông tin preferences của user
         const [prefs] = await pool.query('SELECT * FROM user_preferences WHERE user_id = ?', [userId]);
@@ -26,7 +26,7 @@ Bạn là chuyên gia dinh dưỡng. Hãy gợi ý 3 món ăn phù hợp nhất 
 
 DANH SÁCH MÓN ĂN:
 ${dishes.map(d => `
-- ID: ${d.id}
+- ID: ${d.dish_id}
 - Tên: ${d.name}
 - Mô tả: ${d.description}
 - Dinh dưỡng: ${d.calories} kcal, ${d.protein}g protein, ${d.carbs}g carbs, ${d.fat}g fat
@@ -63,13 +63,13 @@ Trả về ĐÚNG định dạng JSON sau (không thêm markdown):
         // Lấy chi tiết món ăn từ database
         const dishIds = aiResponse.suggestions.map(s => s.dish_id);
         const [suggestedDishes] = await pool.query(
-            'SELECT * FROM dishes WHERE id IN (?)',
+            'SELECT * FROM dishes WHERE dish_id IN (?)',
             [dishIds]
         );
 
         // Kết hợp thông tin món ăn với lý do gợi ý
         const suggestions = suggestedDishes.map(dish => {
-            const aiSuggestion = aiResponse.suggestions.find(s => s.dish_id === dish.id);
+            const aiSuggestion = aiResponse.suggestions.find(s => s.dish_id === dish.dish_id);
             return {
                 ...dish,
                 reason: aiSuggestion?.reason || 'Món ăn phù hợp với bạn'
