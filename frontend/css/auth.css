@@ -1,6 +1,4 @@
-/* AUTH CSS - Login & Register Pages */
-
-/* Container cho form đăng nhập/đăng ký */
+/* Login & Register Pages */
 .form-container {
     max-width: 450px;
     margin: 3rem auto;
@@ -23,7 +21,6 @@
     }
 }
 
-/* Logo/Title */
 .form-container h1 {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
@@ -45,7 +42,6 @@
     font-size: 1.1rem;
 }
 
-/* Form groups */
 .form-group {
     margin-bottom: 1.5rem;
 }
@@ -59,7 +55,6 @@
     transition: color 0.3s ease;
 }
 
-/* Input fields */
 .form-group input,
 .form-group select,
 .form-group textarea {
@@ -89,13 +84,11 @@
     border-color: var(--gray-700);
 }
 
-/* Placeholder styling */
 .form-group input::placeholder {
     color: var(--gray-700);
     opacity: 0.6;
 }
 
-/* Submit button full width */
 .form-container .btn {
     width: 100%;
     padding: 1rem;
@@ -105,7 +98,6 @@
     overflow: hidden;
 }
 
-/* Ripple effect */
 .form-container .btn::after {
     content: '';
     position: absolute;
@@ -155,7 +147,7 @@
     width: 100%;
 }
 
-/* Icon trong input (nếu cần) */
+/* Icon trong input*/
 .input-with-icon {
     position: relative;
 }
@@ -166,7 +158,6 @@
 
 .input-with-icon::before {
     content: '👤';
-    /* Hoặc icon khác */
     position: absolute;
     left: 1rem;
     top: 50%;
@@ -174,7 +165,6 @@
     font-size: 1.2rem;
 }
 
-/* Error state */
 .form-group.error input {
     border-color: var(--danger);
     background: #fee2e2;
@@ -184,13 +174,11 @@
     color: var(--danger);
 }
 
-/* Success state */
 .form-group.success input {
     border-color: var(--success);
     background: #d1fae5;
 }
 
-/* Responsive */
 @media (max-width: 480px) {
     .form-container {
         padding: 2rem 1.5rem;

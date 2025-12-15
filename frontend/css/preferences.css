@@ -1,14 +1,8 @@
-/* ========================================
-   PREFERENCES CSS - Trang sở thích
-   ======================================== */
-
-/* Form container */
 .preferences-form {
     max-width: 800px;
     margin: 0 auto;
 }
 
-/* Section headers */
 .preferences-form h3 {
     color: var(--primary);
     font-size: 1.3rem;
@@ -21,7 +15,6 @@
     gap: var(--space-sm);
 }
 
-/* Form groups */
 .form-group {
     margin-bottom: var(--space-xl);
     position: relative;
@@ -35,12 +28,10 @@
     font-size: 1rem;
 }
 
-/* Label với icon emoji */
 .form-group label::before {
     margin-right: var(--space-sm);
 }
 
-/* Input, textarea, select styling */
 .form-group input,
 .form-group select,
 .form-group textarea {
@@ -68,7 +59,6 @@
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-/* Small helper text */
 .form-group small {
     display: block;
     margin-top: var(--space-sm);
@@ -77,7 +67,6 @@
     font-style: italic;
 }
 
-/* Select với custom arrow */
 .form-group select {
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23667eea' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
@@ -87,7 +76,6 @@
     padding-right: 2.5rem;
 }
 
-/* Number input với styling */
 .form-group input[type="number"] {
     -moz-appearance: textfield;
 }
@@ -98,7 +86,6 @@
     margin: 0;
 }
 
-/* Health goal options - visual cards */
 .health-goals {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

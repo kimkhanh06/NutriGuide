@@ -1,10 +1,5 @@
-/* ========================================
-   COMMON CSS - Dùng chung cho tất cả trang
-   ======================================== */
-
-/* ===== CSS VARIABLES ===== */
+/* Dùng chung cho tất cả trang */
 :root {
-    /* Colors */
     --primary: #667eea;
     --primary-dark: #5568d3;
     --secondary: #764ba2;
@@ -19,24 +14,21 @@
     --gray-700: #374151;
     --gray-800: #1f2937;
 
-    /* Spacing */
     --space-sm: 0.5rem;
     --space-md: 1rem;
     --space-lg: 1.5rem;
     --space-xl: 2rem;
 
-    /* Border radius */
     --radius: 0.75rem;
     --radius-lg: 1rem;
     --radius-full: 9999px;
 
-    /* Shadows */
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
     --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
-/* ===== RESET ===== */
+/* RESET */
 * {
     margin: 0;
     padding: 0;
@@ -57,7 +49,6 @@ body {
     padding: var(--space-lg);
 }
 
-/* ===== CONTAINER ===== */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -80,7 +71,6 @@ body {
     }
 }
 
-/* ===== HEADER ===== */
 .header {
     display: flex;
     justify-content: space-between;
@@ -113,7 +103,7 @@ body {
     border-radius: var(--radius-full);
 }
 
-/* ===== NAVIGATION ===== */
+
 nav {
     margin-bottom: var(--space-xl);
 }
@@ -158,7 +148,6 @@ nav a:hover {
     box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
 
-/* ===== BUTTONS ===== */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -203,7 +192,6 @@ nav a:hover {
     color: var(--white);
 }
 
-/* ===== ALERTS ===== */
 .alert {
     padding: var(--space-md);
     border-radius: var(--radius);
@@ -242,7 +230,6 @@ nav a:hover {
     border-color: var(--info);
 }
 
-/* ===== LOADING ===== */
 .loading {
     text-align: center;
     padding: var(--space-xl);
@@ -268,7 +255,6 @@ nav a:hover {
     }
 }
 
-/* ===== UTILITY CLASSES ===== */
 .text-center {
     text-align: center;
 }
@@ -285,7 +271,6 @@ nav a:hover {
     display: none;
 }
 
-/* ===== PLEASE LOGIN SCREEN ===== */
 .please-login {
     display: flex;
     flex-direction: column;
@@ -338,7 +323,6 @@ nav a:hover {
     min-width: 150px;
 }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     body {
         padding: var(--space-sm);
