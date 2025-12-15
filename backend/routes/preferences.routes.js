@@ -1,13 +1,11 @@
-// Routes xử lý sở thích người dùng (US01, US02)
+// Routes xử lý sở thích người dùng 
 const express = require('express');
 const pool = require('../config/database');
 const { authenticateToken } = require('../middleware/auth');
 
 const router = express.Router();
 
-// ==========================
 // API LƯU SỞ THÍCH (US01, US02)
-// ==========================
 router.post('/', authenticateToken, async (req, res) => {
     try {
         const { favorite_foods, dislike_foods, allergies, health_goal } = req.body;
@@ -17,7 +15,6 @@ router.post('/', authenticateToken, async (req, res) => {
         const [existing] = await pool.query('SELECT pref_id FROM user_preferences WHERE user_id = ?', [userId]);
 
         if (existing.length > 0) {
-            // Update nếu đã có
             await pool.query(
                 `UPDATE user_preferences SET 
                 favorite_foods = ?, dislike_foods = ?, allergies = ?, 
@@ -26,7 +23,6 @@ router.post('/', authenticateToken, async (req, res) => {
                 [favorite_foods, dislike_foods, allergies, health_goal, userId]
             );
         } else {
-            // Insert mới nếu chưa có
             await pool.query(
                 `INSERT INTO user_preferences 
                 (user_id, favorite_foods, dislike_foods, allergies, health_goal)
@@ -42,9 +38,8 @@ router.post('/', authenticateToken, async (req, res) => {
     }
 });
 
-// ==========================
+
 // API LẤY SỞ THÍCH
-// ==========================
 router.get('/', authenticateToken, async (req, res) => {
     try {
         const userId = req.user.user_id;

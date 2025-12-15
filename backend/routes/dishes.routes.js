@@ -5,9 +5,7 @@ const { authenticateToken } = require('../middleware/auth');
 
 const router = express.Router();
 
-// ==========================
-// API LẤY TẤT CẢ MÓN ĂN (US04)
-// ==========================
+// API LẤY TẤT CẢ MÓN ĂN 
 router.get('/', authenticateToken, async (req, res) => {
     try {
         const [dishes] = await pool.query('SELECT * FROM dishes ORDER BY name');

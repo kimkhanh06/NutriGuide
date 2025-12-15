@@ -41,12 +41,11 @@ async function getSuggestions() {
     const loading = document.getElementById('loading');
     const container = document.getElementById('suggestionsContainer');
 
-    // Hiển thị loading
     loading.style.display = 'block';
     container.innerHTML = '';
 
     try {
-        // Gọi API gợi ý (US03)
+        // Gọi API gợi ý 
         const response = await fetch(`${API_URL}/suggestions`, {
             method: 'POST',
             headers: {
@@ -70,7 +69,6 @@ async function getSuggestions() {
     }
 }
 
-// Hàm hiển thị gợi ý (US04: hiển thị dinh dưỡng chi tiết)
 function displaySuggestions(suggestions) {
     const container = document.getElementById('suggestionsContainer');
 
@@ -81,7 +79,6 @@ function displaySuggestions(suggestions) {
 
     container.innerHTML = '';
 
-    // Tạo card cho mỗi món ăn
     suggestions.forEach(dish => {
         const card = document.createElement('div');
         card.className = 'dish-card';
@@ -91,7 +88,6 @@ function displaySuggestions(suggestions) {
                         <h3>${dish.name}</h3>
                         <p class="description">${dish.description}</p>
                         
-                        <!-- US04: Chi tiết dinh dưỡng -->
                         <div class="nutrition-info">
                             <div class="nutrition-item">
                                 <strong>${dish.calories}</strong>
@@ -130,8 +126,6 @@ function displaySuggestions(suggestions) {
 }
 
 
-
-// Hàm hiển thị thông báo
 function showMessage(message, type) {
     const messageDiv = document.getElementById('message');
     messageDiv.className = `alert alert-${type}`;

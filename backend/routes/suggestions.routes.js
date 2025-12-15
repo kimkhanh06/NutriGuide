@@ -1,4 +1,4 @@
-// Routes xử lý gợi ý món ăn từ AI (US03)
+// Routes xử lý gợi ý món ăn từ AI 
 const express = require('express');
 const pool = require('../config/database');
 const model = require('../config/gemini');
@@ -6,17 +6,13 @@ const { authenticateToken } = require('../middleware/auth');
 
 const router = express.Router();
 
-// ==========================
-// API GỢI Ý MÓN ĂN VỚI GEMINI AI (US03)
-// ==========================
+
+// API GỢI Ý MÓN ĂN VỚI GEMINI AI 
 router.post('/', authenticateToken, async (req, res) => {
     try {
         const userId = req.user.user_id;
 
-        // Lấy thông tin preferences của user
         const [prefs] = await pool.query('SELECT * FROM user_preferences WHERE user_id = ?', [userId]);
-
-        // Lấy danh sách món ăn từ database
         const [dishes] = await pool.query('SELECT * FROM dishes');
 
         // Tạo prompt cho Gemini AI
@@ -56,18 +52,16 @@ Trả về ĐÚNG định dạng JSON sau (không thêm markdown):
         const response = await result.response;
         let text = response.text();
 
-        // Xử lý response từ AI (loại bỏ markdown nếu có)
+        // Xử lý response từ AI 
         text = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
         const aiResponse = JSON.parse(text);
 
-        // Lấy chi tiết món ăn từ database
         const dishIds = aiResponse.suggestions.map(s => s.dish_id);
         const [suggestedDishes] = await pool.query(
             'SELECT * FROM dishes WHERE dish_id IN (?)',
             [dishIds]
         );
 
-        // Kết hợp thông tin món ăn với lý do gợi ý
         const suggestions = suggestedDishes.map(dish => {
             const aiSuggestion = aiResponse.suggestions.find(s => s.dish_id === dish.dish_id);
             return {

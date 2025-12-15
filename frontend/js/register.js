@@ -1,6 +1,5 @@
 const API_URL = 'http://localhost:3000/api';
 
-// Xử lý đăng ký
 document.getElementById('registerForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -8,7 +7,6 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
 
-    // Validate: Kiểm tra mật khẩu khớp nhau
     if (password !== confirmPassword) {
         showMessage('Mật khẩu xác nhận không khớp!', 'error');
         return;
@@ -27,15 +25,12 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
         const data = await response.json();
 
         if (response.ok) {
-            // Đăng ký thành công
             showMessage('Đăng ký thành công! Đang chuyển đến trang đăng nhập...', 'success');
 
-            // Chuyển hướng đến trang login sau 2 giây
             setTimeout(() => {
                 window.location.href = 'login.html';
             }, 2000);
         } else {
-            // Đăng ký thất bại (có thể username đã tồn tại)
             showMessage(data.error || 'Đăng ký thất bại!', 'error');
         }
     } catch (error) {
@@ -44,7 +39,6 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     }
 });
 
-// Hàm hiển thị thông báo
 function showMessage(message, type) {
     const messageDiv = document.getElementById('message');
     messageDiv.className = `alert alert-${type}`;

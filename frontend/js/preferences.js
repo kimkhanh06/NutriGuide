@@ -2,7 +2,6 @@ const API_URL = 'http://localhost:3000/api';
 const token = localStorage.getItem('token');
 const user = JSON.parse(localStorage.getItem('user') || '{}');
 
-// Kiểm tra đăng nhập
 if (!token) {
     showPleaseLogin();
 } else {
@@ -35,7 +34,6 @@ function initPage() {
     loadPreferences();
 }
 
-// Hàm load sở thích từ database
 async function loadPreferences() {
     const loading = document.getElementById('loading');
     loading.style.display = 'block';
@@ -51,7 +49,6 @@ async function loadPreferences() {
         if (response.ok) {
             const prefs = await response.json();
 
-            // Nếu có dữ liệu, điền vào form
             if (prefs) {
                 document.getElementById('favorite_foods').value = prefs.favorite_foods || '';
                 document.getElementById('dislike_foods').value = prefs.dislike_foods || '';
@@ -68,11 +65,9 @@ async function loadPreferences() {
     }
 }
 
-// Xử lý submit form
 document.getElementById('preferencesForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Lấy dữ liệu từ form
     const formData = {
         favorite_foods: document.getElementById('favorite_foods').value.trim(),
         dislike_foods: document.getElementById('dislike_foods').value.trim(),
@@ -103,20 +98,17 @@ document.getElementById('preferencesForm').addEventListener('submit', async (e) 
     }
 });
 
-// Hàm hiển thị thông báo
 function showMessage(message, type) {
     const messageDiv = document.getElementById('message');
     messageDiv.className = `alert alert-${type}`;
     messageDiv.textContent = message;
     messageDiv.style.display = 'block';
 
-    // Tự động ẩn sau 5 giây
     setTimeout(() => {
         messageDiv.style.display = 'none';
     }, 5000);
 }
 
-// Hàm đăng xuất
 function logout() {
     if (confirm('Bạn có chắc muốn đăng xuất?')) {
         localStorage.removeItem('token');

@@ -2,20 +2,16 @@
 const token = localStorage.getItem('token');
 const user = JSON.parse(localStorage.getItem('user') || '{}');
 
-// Nếu chưa đăng nhập, chuyển về trang login
 if (!token) {
     showPleaseLogin();
 } else {
-    // Đã đăng nhập, hiển thị nội dung bình thường
     initDashboard();
 }
 
 function showPleaseLogin() {
-    // Ẩn header và nav
     document.getElementById('mainHeader').style.display = 'none';
     document.getElementById('mainNav').style.display = 'none';
 
-    // Hiển thị màn hình yêu cầu đăng nhập
     document.getElementById('mainContent').innerHTML = `
                 <div class="please-login">
                     <div class="icon">🔒</div>
@@ -34,15 +30,11 @@ function showPleaseLogin() {
 }
 
 function initDashboard() {
-    // Hiển thị tên user
     document.getElementById('userDisplay').textContent = `Xin chào, ${user.username}!`;
-
-    // Hiển thị menu Admin nếu là admin
     if (user.role === 'admin') {
         document.getElementById('adminLink').style.display = 'block';
     }
 
-    // Thêm nội dung dashboard
     document.getElementById('mainContent').innerHTML = `
                 <h2>Chào mừng đến với NutriGuide! 👋</h2>
                 <p>Hệ thống gợi ý món ăn thông minh được hỗ trợ bởi Gemini AI</p>

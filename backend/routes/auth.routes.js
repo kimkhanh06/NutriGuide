@@ -7,19 +7,15 @@ const { JWT_SECRET } = require('../middleware/auth');
 
 const router = express.Router();
 
-// ==========================
 // API ĐĂNG KÝ (Register)
-// ==========================
 router.post('/register', async (req, res) => {
     try {
         const { username, password } = req.body;
 
-        // Validate input
         if (!username || !password) {
             return res.status(400).json({ error: 'Vui lòng nhập tên đăng nhập và mật khẩu.' });
         }
 
-        // Kiểm tra username đã tồn tại chưa
         const [existing] = await pool.query('SELECT user_id FROM users WHERE username = ?', [username]);
         if (existing.length > 0) {
             return res.status(400).json({ error: 'Tên người dùng đã tồn tại.' });
@@ -28,7 +24,6 @@ router.post('/register', async (req, res) => {
         // Hash mật khẩu (bcrypt tự động thêm salt)
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Thêm user mới vào database
         const [result] = await pool.query(
             'INSERT INTO users (username, password) VALUES (?, ?)',
             [username, hashedPassword]
@@ -50,12 +45,10 @@ router.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
 
-        // Validate input
         if (!username || !password) {
             return res.status(400).json({ error: 'Vui lòng nhập tên đăng nhập và mật khẩu.' });
         }
 
-        // Tìm user trong database
         const [users] = await pool.query('SELECT * FROM users WHERE username = ?', [username]);
         if (users.length === 0) {
             return res.status(401).json({ error: 'Thông tin đăng nhập không hợp lệ.' });

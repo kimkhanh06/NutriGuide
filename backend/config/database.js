@@ -13,5 +13,4 @@ const dbConfig = {
 // Tạo connection pool (quản lý nhiều kết nối hiệu quả)
 const pool = mysql.createPool(dbConfig);
 
-// Export pool để sử dụng ở các file khác
 module.exports = pool;
