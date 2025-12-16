@@ -100,14 +100,22 @@ document.getElementById('preferencesForm').addEventListener('submit', async (e) 
 
 function showMessage(message, type) {
     const messageDiv = document.getElementById('message');
-    messageDiv.className = `alert alert-${type}`;
-    messageDiv.textContent = message;
+
+    messageDiv.innerHTML = `
+        <div class="info-box ${type}">
+            ${message}
+        </div>
+    `;
+
     messageDiv.style.display = 'block';
 
+    // Tự ẩn sau 2 giây
     setTimeout(() => {
         messageDiv.style.display = 'none';
-    }, 5000);
+        messageDiv.innerHTML = '';
+    }, 2000);
 }
+
 
 function logout() {
     if (confirm('Bạn có chắc muốn đăng xuất?')) {
