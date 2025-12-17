@@ -54,7 +54,8 @@ async function loadPreferences() {
                 document.getElementById('dislike_foods').value = prefs.dislike_foods || '';
                 document.getElementById('allergies').value = prefs.allergies || '';
                 document.getElementById('health_goal').value = prefs.health_goal || 'maintain';
-
+                //
+                document.getElementById('budget_range').value = prefs.budget_range || '';
             }
         }
     } catch (error) {
@@ -73,7 +74,7 @@ document.getElementById('preferencesForm').addEventListener('submit', async (e) 
         dislike_foods: document.getElementById('dislike_foods').value.trim(),
         allergies: document.getElementById('allergies').value.trim(),
         health_goal: document.getElementById('health_goal').value,
-
+        budget_range: document.getElementById('budget_range').value || null
     };
 
     try {

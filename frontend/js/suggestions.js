@@ -107,6 +107,8 @@ function displaySuggestions(suggestions) {
                             </div>
                         </div>
                         
+                        <!-- US05: Hiển thị giá -->
+                        <div class="price-badge">💰 ${Number(dish.price).toLocaleString('vi-VN')} VNĐ</div>
                         
                         <!-- Lý do AI gợi ý -->
                         <div class="ai-reason">
@@ -120,20 +122,51 @@ function displaySuggestions(suggestions) {
                                 ${dish.ingredients.split(',').map(ing => `<span class="ingredient-tag">${ing.trim()}</span>`).join('')}
                             </div>
                         </div>
+
+                        <div class="actions">
+                            <button class="btn btn-success" onclick="saveToHistory(${dish.dish_id})">
+                                ✅ Đã ăn món này
+                            </button>
+                        </div>
+                    </div
                 `;
         container.appendChild(card);
     });
 }
 
+// Hàm lưu món vào lịch sử (US06)
+async function saveToHistory(dishId) {
+    try {
+        const response = await fetch(`${API_URL}/meal-history`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ dish_id: dishId })
+        });
+
+        if (response.ok) {
+            showMessage('✅ Đã lưu vào lịch sử!', 'success');
+        } else {
+            showMessage('❌ Lưu thất bại!', 'error');
+        }
+    } catch (error) {
+        console.error('Save to history error:', error);
+        showMessage('❌ Lỗi kết nối!', 'error');
+    }
+}
+
 
 function showMessage(message, type) {
     const messageDiv = document.getElementById('message');
-    messageDiv.className = `alert alert-${type}`;
+    messageDiv.className = `toast toast-${type}`;
+
     messageDiv.textContent = message;
     messageDiv.style.display = 'block';
     setTimeout(() => {
         messageDiv.style.display = 'none';
-    }, 5000);
+    }, 3000);
 }
 
 function logout() {

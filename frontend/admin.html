@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản trị - NutriGuide</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header" id="mainHeader">
+            <h1>🍽️ NutriGuide Admin</h1>
+            <div class="user-info">
+                <span id="userDisplay"></span>
+                <button class="btn btn-secondary" onclick="logout()">Đăng xuất</button>
+            </div>
+        </div>
+
+        <nav id="mainNav">
+            <ul>
+                <li><a href="dashboard.html">Trang chủ</a></li>
+                <li><a href="preferences.html">Sở thích của tôi</a></li>
+                <li><a href="suggestions.html">Gợi ý món ăn</a></li>
+                <li><a href="history.html">Lịch sử ăn uống</a></li>
+                <li><a href="admin.html">Quản trị</a></li>
+            </ul>
+        </nav>
+
+        <div class="content" id="mainContent">
+            <h2>🔧 Quản lý món ăn (US07)</h2>
+            <p>Thêm, sửa, xóa món ăn và cập nhật thông tin dinh dưỡng</p>
+
+            <div id="message"></div>
+
+            <!-- Form thêm/sửa món -->
+            <div class="admin-form-section">
+                <h3 id="formTitle">➕ Thêm món ăn mới</h3>
+                <form id="dishForm">
+                    <input type="hidden" id="dishId">
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="name">Tên món:</label>
+                            <input type="text" id="name" required placeholder="Ví dụ: Phở bò">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="description">Mô tả:</label>
+                            <textarea id="description" rows="3" placeholder="Mô tả món ăn..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="calories">Calories (kcal):</label>
+                            <input type="number" id="calories" required min="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="protein">Protein (g):</label>
+                            <input type="number" id="protein" required min="0" step="0.1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="carbs">Carbs (g):</label>
+                            <input type="number" id="carbs" required min="0" step="0.1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fat">Fat (g):</label>
+                            <input type="number" id="fat" required min="0" step="0.1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price">Giá (VNĐ):</label>
+                            <input type="number" id="price" required min="0" step="1000">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="ingredients">Nguyên liệu (ngăn cách bằng dấu phẩy):</label>
+                            <input type="text" id="ingredients" placeholder="Ví dụ: thịt bò,bánh phở,hành,ngò">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success" id="submitBtn">💾 Lưu món</button>
+                        <button type="button" class="btn btn-secondary" onclick="resetForm()">🔄 Hủy</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Danh sách món ăn -->
+            <div class="dishes-list-section">
+                <h3>📋 Danh sách món ăn</h3>
+                <div id="loading" class="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    Đang tải...
+                </div>
+                <div id="dishesContainer"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+
+</html>

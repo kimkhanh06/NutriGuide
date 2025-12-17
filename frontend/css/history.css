@@ -1,0 +1,419 @@
+/* ========================================
+   HISTORY CSS - Trang lịch sử ăn uống
+   ======================================== */
+
+/* Summary stats */
+.summary-card {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: var(--white);
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-xl);
+    box-shadow: var(--shadow-xl);
+}
+
+.summary-card h3 {
+    color: var(--white);
+    margin-bottom: var(--space-lg);
+    font-size: 1.5rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--space-lg);
+}
+
+.stat-item {
+    text-align: center;
+    padding: var(--space-md);
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.stat-item strong {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+}
+
+.stat-item span {
+    display: block;
+    font-size: 0.875rem;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* History table */
+.history-table-container {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: var(--white);
+}
+
+thead th {
+    padding: var(--space-lg);
+    text-align: left;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
+}
+
+tbody tr {
+    border-bottom: 1px solid var(--gray-100);
+    transition: all 0.2s ease;
+}
+
+tbody tr:hover {
+    background: linear-gradient(90deg, rgba(102, 126, 234, 0.05), transparent);
+    transform: scale(1.01);
+}
+
+tbody tr:last-child {
+    border-bottom: none;
+}
+
+tbody td {
+    padding: var(--space-lg);
+    color: var(--gray-800);
+}
+
+/* Meal name column */
+td.meal-name {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* Date column */
+td.date {
+    color: var(--gray-700);
+    font-size: 0.875rem;
+}
+
+/* Nutrition badges */
+.nutrition-badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    background: var(--gray-100);
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.nutrition-badge.calories {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.nutrition-badge.protein {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.nutrition-badge.carbs {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.nutrition-badge.fat {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+/* Star rating */
+.star-rating {
+    display: inline-flex;
+    gap: 2px;
+    font-size: 1.2rem;
+}
+
+.star-rating .star {
+    color: var(--warning);
+}
+
+.star-rating .star.empty {
+    color: var(--gray-700);
+}
+
+/* Price column */
+td.price {
+    font-weight: 600;
+    color: var(--success);
+}
+
+/* Actions column */
+td.actions {
+    text-align: right;
+}
+
+td.actions button {
+    padding: 0.5rem var(--space-md);
+    background: transparent;
+    border: 1px solid var(--danger);
+    color: var(--danger);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.875rem;
+}
+
+td.actions button:hover {
+    background: var(--danger);
+    color: var(--white);
+}
+
+/* Empty state */
+.empty-history {
+    text-align: center;
+    padding: 3rem;
+    background: var(--gray-50);
+    border-radius: var(--radius-lg);
+    border: 2px dashed var(--gray-700);
+}
+
+.empty-history .icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-lg);
+    opacity: 0.3;
+}
+
+.empty-history h3 {
+    color: var(--gray-800);
+    margin-bottom: var(--space-md);
+}
+
+.empty-history p {
+    color: var(--gray-700);
+    margin-bottom: var(--space-xl);
+}
+
+/* Filter/Search bar */
+.history-controls {
+    display: flex;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+    flex-wrap: wrap;
+}
+
+.search-box {
+    flex: 1;
+    min-width: 250px;
+    position: relative;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 2px solid var(--gray-100);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.search-box::before {
+    content: '🔍';
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+}
+
+.search-box input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Date filter */
+.date-filter {
+    display: flex;
+    gap: var(--space-sm);
+    align-items: center;
+}
+
+.date-filter select {
+    padding: 0.75rem var(--space-md);
+    border: 2px solid var(--gray-100);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* Export button */
+.export-btn {
+    padding: 0.75rem 1.5rem;
+    background: var(--success);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.export-btn:hover {
+    background: #059669;
+    transform: translateY(-2px);
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-sm);
+    margin-top: var(--space-xl);
+}
+
+.pagination button {
+    padding: 0.5rem var(--space-md);
+    border: 2px solid var(--gray-100);
+    background: var(--white);
+    color: var(--gray-800);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.pagination button.active {
+    background: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .history-controls {
+        flex-direction: column;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    /* ===== TABLE TO CARDS ON MOBILE ===== */
+
+    /* Ẩn table header */
+    thead {
+        display: none;
+    }
+
+    /* Chuyển mỗi row thành card */
+    tbody tr {
+        display: block;
+        margin-bottom: var(--space-lg);
+        border: 2px solid var(--gray-100);
+        border-radius: var(--radius-lg);
+        padding: var(--space-lg);
+        background: var(--white);
+        box-shadow: var(--shadow-md);
+    }
+
+    tbody tr:hover {
+        transform: none;
+        border-color: var(--primary);
+    }
+
+    /* Mỗi cell thành row trong card */
+    tbody td {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: var(--space-md);
+        padding: var(--space-sm) 0;
+        border: none;
+        border-bottom: 1px solid var(--gray-100);
+        align-items: center;
+    }
+
+    tbody td:last-child {
+        border-bottom: none;
+    }
+
+    /* Thêm label trước mỗi giá trị */
+    tbody td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: var(--gray-700);
+        font-size: 0.875rem;
+    }
+
+    /* Meal name nổi bật hơn */
+    tbody td.meal-name {
+        grid-column: 1 / -1;
+        font-size: 1.2rem;
+        padding-bottom: var(--space-md);
+        border-bottom: 2px solid var(--primary);
+        margin-bottom: var(--space-sm);
+    }
+
+    tbody td.meal-name::before {
+        display: none;
+    }
+
+    /* Nutrition badges nhỏ hơn */
+    .nutrition-badge {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    /* Action buttons full width */
+    td.actions {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding-top: var(--space-md);
+    }
+
+    td.actions::before {
+        display: none;
+    }
+
+    td.actions button {
+        width: 100%;
+    }
+
+    /* Date nhỏ hơn */
+    td.date {
+        font-size: 0.8rem;
+    }
+
+}

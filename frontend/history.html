@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch sử ăn uống - NutriGuide</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/history.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header" id="mainHeader">
+            <h1>🍽️ NutriGuide</h1>
+            <div class="user-info">
+                <span id="userDisplay"></span>
+                <button class="btn btn-secondary" onclick="logout()">Đăng xuất</button>
+            </div>
+        </div>
+
+        <nav id="mainNav">
+            <ul>
+                <li><a href="dashboard.html">Trang chủ</a></li>
+                <li><a href="preferences.html">Sở thích của tôi</a></li>
+                <li><a href="suggestions.html">Gợi ý món ăn</a></li>
+                <li><a href="history.html">Lịch sử ăn uống</a></li>
+                <li id="adminLink" style="display: none;"><a href="admin.html">Quản trị</a></li>
+            </ul>
+        </nav>
+
+        <div class="content" id="mainContent">
+            <h2>📊 Lịch sử ăn uống của bạn</h2>
+            <p>Theo dõi các món đã ăn và dinh dưỡng tích lũy</p>
+
+            <div id="message"></div>
+
+            <div id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                Đang tải lịch sử...
+            </div>
+
+            <!-- Thống kê tổng quan -->
+            <div id="summary" class="summary-card" style="display: none;">
+                <h3>📈 Thống kê tổng quan</h3>
+                <div class="nutrition-info">
+                    <div class="nutrition-item">
+                        <strong id="totalMeals">0</strong>
+                        <span>Bữa ăn</span>
+                    </div>
+                    <div class="nutrition-item">
+                        <strong id="totalCalories">0</strong>
+                        <span>Tổng kcal</span>
+                    </div>
+                    <div class="nutrition-item">
+                        <strong id="avgCalories">0</strong>
+                        <span>TB kcal/bữa</span>
+                    </div>
+                    <div class="nutrition-item">
+                        <strong id="totalSpent">0</strong>
+                        <span>Tổng chi (VNĐ)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Danh sách lịch sử -->
+            <div id="historyContainer"></div>
+        </div>
+    </div>
+
+    <script src="js/history.js">
+
+    </script>
+</body>
+
+</html>

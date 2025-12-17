@@ -6,9 +6,11 @@ const { authenticateToken } = require('../middleware/auth');
 const router = express.Router();
 
 // API LƯU SỞ THÍCH (US01, US02)
+
+// thêm mới budget_range
 router.post('/', authenticateToken, async (req, res) => {
     try {
-        const { favorite_foods, dislike_foods, allergies, health_goal } = req.body;
+        const { favorite_foods, dislike_foods, allergies, health_goal, budget_range } = req.body;
         const userId = req.user.user_id;
 
         // Kiểm tra đã có preferences chưa
@@ -18,16 +20,16 @@ router.post('/', authenticateToken, async (req, res) => {
             await pool.query(
                 `UPDATE user_preferences SET 
                 favorite_foods = ?, dislike_foods = ?, allergies = ?, 
-                health_goal = ?
+                health_goal = ?, budget_range = ?
                 WHERE user_id = ?`,
-                [favorite_foods, dislike_foods, allergies, health_goal, userId]
+                [favorite_foods, dislike_foods, allergies, health_goal, budget_range, userId]
             );
         } else {
             await pool.query(
                 `INSERT INTO user_preferences 
-                (user_id, favorite_foods, dislike_foods, allergies, health_goal)
+                (user_id, favorite_foods, dislike_foods, allergies, health_goal, budget_range)
                 VALUES (?, ?, ?, ?, ?)`,
-                [userId, favorite_foods, dislike_foods, allergies, health_goal]
+                [userId, favorite_foods, dislike_foods, allergies, health_goal, budget_range]
             );
         }
 

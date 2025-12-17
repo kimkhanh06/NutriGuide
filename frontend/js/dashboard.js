@@ -31,6 +31,7 @@ function showPleaseLogin() {
 
 function initDashboard() {
     document.getElementById('userDisplay').textContent = `Xin chào, ${user.username}!`;
+    //thêm
     if (user.role === 'admin') {
         document.getElementById('adminLink').style.display = 'block';
     }

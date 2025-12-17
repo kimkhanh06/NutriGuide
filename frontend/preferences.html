@@ -25,7 +25,8 @@
                 <li><a href="dashboard.html">Trang chủ</a></li>
                 <li><a href="preferences.html">Sở thích của tôi</a></li>
                 <li><a href="suggestions.html">Gợi ý món ăn</a></li>
-
+                <li><a href="history.html">Lịch sử ăn uống</a></li>
+                <li id="adminLink" style="display: none;"><a href="admin.html">Quản trị</a></li>
             </ul>
         </nav>
 
@@ -71,6 +72,13 @@
                         <option value="healthy_eating">Ăn uống lành mạnh</option>
                     </select>
                     <small style="color: #666;">Chọn mục tiêu để AI gợi ý món phù hợp</small>
+                </div>
+
+                <!-- US05: Ngân sách -->
+                <div class="form-group">
+                    <label for="budget_range">💰 Ngân sách mỗi bữa (VNĐ):</label>
+                    <input type="number" id="budget_range" min="0" step="1000" placeholder="Ví dụ: 50000">
+                    <small style="color: #666;">Để trống nếu không giới hạn ngân sách</small>
                 </div>
 
                 <div id="message"></div>
