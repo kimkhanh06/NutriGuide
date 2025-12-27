@@ -31,6 +31,9 @@ function showPleaseLogin() {
 
 function initPage() {
     document.getElementById('userDisplay').textContent = `Xin chào, ${user.username}!`;
+    if (user.role === 'admin') {
+        document.getElementById('adminLink').style.display = 'list-item';
+    }
     loadPreferences();
 }
 

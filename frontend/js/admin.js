@@ -187,28 +187,47 @@ function editDish(dish) {
 }
 
 // Xóa món
-async function deleteDish(dishId) {
-    if (!confirm('Bạn có chắc muốn xóa món này?')) return;
+function deleteDish(dishId) {
+    showConfirm('Bạn có chắc muốn xóa món này?', async () => {
+        try {
+            const response = await fetch(`${API_URL}/admin/dishes/${dishId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
 
-    try {
-        const response = await fetch(`${API_URL}/admin/dishes/${dishId}`, {
-            method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ${token}`
+            if (response.ok) {
+                showMessage('✅ Xóa thành công!', 'success');
+                loadDishes();
+            } else {
+                showMessage('❌ Xóa thất bại!', 'error');
             }
-        });
-
-        if (response.ok) {
-            showMessage('✅ Xóa thành công!', 'success');
-            loadDishes();
-        } else {
-            showMessage('❌ Xóa thất bại!', 'error');
+        } catch (error) {
+            showMessage('❌ Lỗi kết nối!', 'error');
         }
-    } catch (error) {
-        console.error('Delete dish error:', error);
-        showMessage('❌ Lỗi kết nối!', 'error');
-    }
+    });
 }
+
+function showConfirm(message, onYes) {
+    const modal = document.getElementById('confirmModal');
+    const msg = document.getElementById('confirmMessage');
+    const yesBtn = document.getElementById('confirmYes');
+    const noBtn = document.getElementById('confirmNo');
+
+    msg.textContent = message;
+    modal.style.display = 'flex';
+
+    yesBtn.onclick = () => {
+        modal.style.display = 'none';
+        onYes();
+    };
+
+    noBtn.onclick = () => {
+        modal.style.display = 'none';
+    };
+}
+
 
 // Reset form
 function resetForm() {
@@ -225,7 +244,7 @@ function showMessage(message, type) {
     messageDiv.style.display = 'block';
     setTimeout(() => {
         messageDiv.style.display = 'none';
-    }, 1500);
+    }, 2000);
 }
 
 function logout() {

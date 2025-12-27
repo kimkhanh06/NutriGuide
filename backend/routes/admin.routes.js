@@ -1,51 +1,88 @@
-// Routes quản lý món ăn cho Admin (US07)
+// Routes quản lý món ăn cho Admin (US07) – phiên bản chuẩn hóa
 const express = require('express');
 const pool = require('../config/database');
 const { authenticateToken, isAdmin } = require('../middleware/auth');
 
 const router = express.Router();
 
-// API ADMIN: TẠO MÓN ĂN MỚI
-// ==========================
+/**
+ * API ADMIN: TẠO MÓN ĂN MỚI
+ * body:
+ * {
+ *   name, description, calories, protein, carbs, fat, price,
+ *   ingredients: ["thịt bò", "bông cải", "tỏi"]
+ * }
+ */
 router.post('/dishes', authenticateToken, isAdmin, async (req, res) => {
+    const conn = await pool.getConnection();
     try {
-        const { name, description, calories, protein, carbs, fat, price, ingredients } = req.body;
+        const {
+            name, description, calories,
+            protein, carbs, fat, price,
+            ingredients
+        } = req.body;
 
-        const [result] = await pool.query(
-            `INSERT INTO dishes (name, description, calories, protein, carbs, fat, price, ingredients)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-            [name, description, calories, protein, carbs, fat, price, ingredients]
+        if (!name) {
+            return res.status(400).json({ error: 'Dish name is required' });
+        }
+
+        await conn.beginTransaction();
+
+        // 1️⃣ Insert dish
+        const [dishResult] = await conn.query(
+            `INSERT INTO dishes 
+            (name, description, calories, protein, carbs, fat, price)
+            VALUES (?, ?, ?, ?, ?, ?, ?)`,
+            [name, description, calories, protein, carbs, fat, price]
         );
 
-        res.status(201).json({ message: 'Dish created', dishId: result.insertId });
+        const dishId = dishResult.insertId;
+
+        // 2️⃣ Insert ingredients + mapping
+        if (Array.isArray(ingredients)) {
+            for (const ing of ingredients) {
+                const ingredientName = ing.trim();
+                if (!ingredientName) continue;
+
+                // insert ingredient if not exists
+                const [[existing]] = await conn.query(
+                    'SELECT ingredient_id FROM ingredients WHERE ingredient_name = ?',
+                    [ingredientName]
+                );
+
+                let ingredientId;
+                if (existing) {
+                    ingredientId = existing.ingredient_id;
+                } else {
+                    const [ingResult] = await conn.query(
+                        'INSERT INTO ingredients (ingredient_name) VALUES (?)',
+                        [ingredientName]
+                    );
+                    ingredientId = ingResult.insertId;
+                }
+
+                // mapping
+                await conn.query(
+                    'INSERT INTO dish_ingredients (dish_id, ingredient_id) VALUES (?, ?)',
+                    [dishId, ingredientId]
+                );
+            }
+        }
+
+        await conn.commit();
+        res.status(201).json({ message: 'Dish created', dish_id: dishId });
     } catch (error) {
+        await conn.rollback();
         console.error('Create dish error:', error);
         res.status(500).json({ error: 'Failed to create dish' });
+    } finally {
+        conn.release();
     }
 });
 
-// API ADMIN: CẬP NHẬT MÓN ĂN
-// ==========================
-router.put('/dishes/:id', authenticateToken, isAdmin, async (req, res) => {
-    try {
-        const dishId = req.params.id;
-        const { name, description, calories, protein, carbs, fat, price, ingredients } = req.body;
-
-        await pool.query(
-            `UPDATE dishes SET name=?, description=?, calories=?, protein=?, carbs=?, 
-            fat=?, price=?, ingredients=? WHERE dish_id=?`,
-            [name, description, calories, protein, carbs, fat, price, ingredients, dishId]
-        );
-
-        res.json({ message: 'Dish updated' });
-    } catch (error) {
-        console.error('Update dish error:', error);
-        res.status(500).json({ error: 'Failed to update dish' });
-    }
-});
-
-// API ADMIN: XÓA MÓN ĂN
-
+/**
+ * API ADMIN: XÓA MÓN ĂN
+ */
 router.delete('/dishes/:id', authenticateToken, isAdmin, async (req, res) => {
     try {
         const dishId = req.params.id;

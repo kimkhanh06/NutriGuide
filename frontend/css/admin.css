@@ -452,13 +452,13 @@
 }
 
 .toast-success {
-    background: #64e393;
-    color: white;
+    background: #a9f0c3;
+    color: rgb(23, 19, 19);
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
 }
 
 .toast-error {
-    background: #ef4444;
-    color: rgb(212, 101, 101);
+    background: #e69494;
+    color: rgb(11, 10, 10);
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
 }

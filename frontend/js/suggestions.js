@@ -116,12 +116,10 @@ function displaySuggestions(suggestions) {
                             <p>${dish.reason}</p>
                         </div>
                         
-                        <div class="ingredients">
-                            <strong>🥗 Nguyên liệu:</strong>
-                            <div class="ingredients-list">
-                                ${dish.ingredients.split(',').map(ing => `<span class="ingredient-tag">${ing.trim()}</span>`).join('')}
-                            </div>
+                        <div class="ingredients-list">
+                             ${(dish.ingredients || '').split(',').filter(Boolean).map(ing => `<span class="ingredient-tag">${ing.trim()}</span>`).join('')}
                         </div>
+
 
                         <div class="actions">
                             <button class="btn btn-success" onclick="saveToHistory(${dish.dish_id})">

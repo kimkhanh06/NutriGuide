@@ -30,7 +30,7 @@
         </nav>
 
         <div class="content" id="mainContent">
-            <h2>🔧 Quản lý món ăn (US07)</h2>
+            <h2>🔧 Quản lý món ăn</h2>
             <p>Thêm, sửa, xóa món ăn và cập nhật thông tin dinh dưỡng</p>
 
             <div id="message"></div>
@@ -101,6 +101,18 @@
             </div>
         </div>
     </div>
+    <div id="confirmModal" class="modal-overlay" style="display:none;">
+        <div class="modal">
+            <h3 id="confirmTitle">Xác nhận</h3>
+            <p id="confirmMessage"></p>
+
+            <div class="modal-actions">
+                <button class="btn btn-danger" id="confirmYes">OK</button>
+                <button class="btn btn-secondary" id="confirmNo">Hủy</button>
+            </div>
+        </div>
+    </div>
+
 
     <script src="js/admin.js"></script>
 </body>
